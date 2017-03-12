@@ -4,7 +4,7 @@ var webpack = require("webpack");
 var productionPlugin = 
     new webpack.DefinePlugin({
         "process.env": {
-            "API_URL": JSON.stringify("http://functionalTestServer.edmondtang.com/api")
+            "API_URL": JSON.stringify("http://ft-nba.gear.host/api")
         }
     });
 
