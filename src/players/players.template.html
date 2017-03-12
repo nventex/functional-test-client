@@ -1,0 +1,78 @@
+<form name="vm.form">
+    <div layout-gt-sm="row">
+        <md-input-container>
+            <label>Name</label>
+            <input ng-model="vm.newPlayer.name" required>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Team</label>
+            <md-select ng-model="vm.newPlayer.teamId" required>
+                <md-option ng-repeat="(key, value) in vm.teamLookups" value="{{key}}">
+                    {{value}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Position</label>
+            <md-select ng-model="vm.newPlayer.positionId" required>
+                <md-option ng-repeat="(key, value) in vm.positionLookups" value="{{key}}">
+                    {{value}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <div>
+            <md-button ng-click="vm.addPlayer()">Add Player</md-button>
+        </div>
+    </div>
+</form>
+<div>
+    <md-table-container>
+        <table md-table>
+            <thead md-head>
+                <tr md-row>
+                    <th md-column>
+                        <input id="name" placeholder="Name" ng-model="vm.playerFilter.name">
+                    </th>
+                    <th md-column>
+                        <input id="startDateStart" ui-date placeholder="Date Start" ng-model="vm.playerFilter.startDateStart">
+                        <input id="startDateEnd" ui-date placeholder="Date End" ng-model="vm.playerFilter.startDateEnd">
+                    </th>
+                    <th md-column>
+                        <select ng-model="vm.playerFilter.teamId" ng-options="key as value for (key, value) in vm.teamLookups track by key">
+                            <option></option>
+                        </select>
+                    </th>
+                    <th md-column>
+                        <select ng-model="vm.playerFilter.positionId" ng-options="key as value for (key, value) in vm.positionLookups track by key">
+                            <option></option>
+                        </select>
+                    </th>
+                    <th md-column>
+                        <md-button class="md-icon-button md-primary" aria-label="Filter" ng-click="vm.filterPlayers()">
+                            <md-icon md-svg-icon="img/icons/filter-outline.svg"></md-icon>
+                        </md-button>
+                    </th>
+                </tr>
+            </thead>
+            <thead md-head>
+                <tr md-row>
+                    <th md-column>Name</th>
+                    <th md-column>Start Date</th>
+                    <th md-column>Team</th>
+                    <th md-column>Position</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="model in vm.model">
+                    <td md-cell>{{model.Name}}</td>
+                    <td md-cell>{{model.StartDate | date}}</td>
+                    <td md-cell>{{model.TeamName}}</td>
+                    <td md-cell>{{model.PositionName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+</div>
